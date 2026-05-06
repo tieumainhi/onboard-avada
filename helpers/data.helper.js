@@ -84,15 +84,27 @@ export function buildUsersWithCounts(users, posts, comments) {
 
 export function getTopByKey(items, key) {
     const safeItems = normalizeArray(items);
-    let topItem = null;
+    if (safeItems.length === 0) {
+        return [];
+    }
 
-    for (const currentItem of safeItems) {
-        if (!topItem || currentItem[key] > topItem[key]) {
-            topItem = currentItem;
+    const listTop = [safeItems[0]];
+    let topValue = safeItems[0][key];
+
+    for (let index = 1; index < safeItems.length; index++) {
+        const currentItem = safeItems[index];
+        const currentValue = currentItem[key];
+
+        if (currentValue > topValue) {
+            topValue = currentValue;
+            listTop.length = 0;
+            listTop.push(currentItem);
+        } else if (currentValue === topValue) {
+            listTop.push(currentItem);
         }
     }
 
-    return topItem;
+    return listTop;
 }
 
 export function sortByDesc(items, key) {

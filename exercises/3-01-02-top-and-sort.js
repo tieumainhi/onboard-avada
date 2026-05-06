@@ -10,11 +10,11 @@ const [users, posts, comments] = await Promise.all([getUsers(), getPosts(), getC
 const usersWithCounts = buildUsersWithCounts(users, posts, comments);
 // ex: [{ id: 1, name: 'Leanne Graham', postsCount: 10, commentsCount: 50 }, ...]
 
-const topByComments = getTopByKey(usersWithCounts, 'commentsCount');
-const topByPosts = getTopByKey(usersWithCounts, 'postsCount');
+const topUsersByComments = getTopByKey(usersWithCounts, 'commentsCount');
+const topUsersByPosts = getTopByKey(usersWithCounts, 'postsCount');
 const sortedByPosts = sortByDesc(usersWithCounts, 'postsCount');
 
-logger({ topByComments, topByPosts, sortedByPosts });
-printJsonToFile({ topByComments, topByPosts, sortedByPosts }, '3-01-02-top-and-sort.json');
+logger({ topUsersByComments, topUsersByPosts, sortedByPosts });
+printJsonToFile({ topUsersByComments, topUsersByPosts, sortedByPosts }, '3-01-02-top-and-sort.json');
 
-export { topByComments, topByPosts, sortedByPosts };
+export { topUsersByComments, topUsersByPosts, sortedByPosts };

@@ -30,8 +30,8 @@ async function main() {
     const usersWithCounts = buildUsersWithCounts(users, posts, comments);
     const usersWithMoreThan3Comments = filterUsersWithMoreThanComments(usersWithCounts, 3);
     const sortedUsersByPostsCountDesc = sortByDesc(usersWithCounts, 'postsCount');
-    const topUserByComments = getTopByKey(usersWithCounts, 'commentsCount');
-    const topUserByPosts = getTopByKey(usersWithCounts, 'postsCount');
+    const topUsersByComments = getTopByKey(usersWithCounts, 'commentsCount');
+    const topUsersByPosts = getTopByKey(usersWithCounts, 'postsCount');
     const mergedPost = buildMergedPostWithComments(post, postComments);
 
     console.timeEnd('build-mapped-data');
@@ -40,8 +40,8 @@ async function main() {
     //     mappedUsers,
     //     usersWithMoreThan3Comments,
     //     usersWithCounts,
-    //     topUserByComments,
-    //     topUserByPosts,
+    //     topUsersByComments,
+    //     topUsersByPosts,
     //     sortedUsersByPostsCountDesc,
     //     mergedPost,
     // });

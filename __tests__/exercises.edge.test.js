@@ -43,7 +43,8 @@ describe('Exercises edge cases', () => {
         expect(sorted[0].id).toBe(1);
 
         const top = getTopByKey(items, 'postsCount');
-        expect(top.id).toBe(1);
+        expect(top).toHaveLength(1);
+        expect(top[0].id).toBe(1);
     });
 
     test('buildMergedPostWithComments handles null post and wrong comments', () => {

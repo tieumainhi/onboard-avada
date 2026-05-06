@@ -65,11 +65,20 @@ describe('data.helper', () => {
         expect(filterUsersWithMoreThanComments(counts, 3)).toHaveLength(0);
     });
 
-    it('finds the top item by key', () => {
+    it('finds all top items by key when tied', () => {
         const counts = buildUsersWithCounts(users, posts, comments);
 
-        expect(getTopByKey(counts, 'postsCount')).toMatchObject({ id: 1, postsCount: 2 });
-        expect(getTopByKey([], 'postsCount')).toBeNull();
+        expect(getTopByKey(counts, 'postsCount')).toMatchObject([{ id: 1, postsCount: 2 }]);
+        expect(getTopByKey([], 'postsCount')).toEqual([]);
+
+        const tied = getTopByKey([
+            { id: 1, postsCount: 10 },
+            { id: 2, postsCount: 10 },
+            { id: 3, postsCount: 8 },
+        ], 'postsCount');
+
+        expect(tied).toHaveLength(2);
+        expect(tied.map((item) => item.id)).toEqual([1, 2]);
     });
 
     it('sorts by count descending', () => {
